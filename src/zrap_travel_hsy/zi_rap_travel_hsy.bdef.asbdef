@@ -1,10 +1,9 @@
-managed implementation in class zbp_i_rap_travel_hsy unique;
-strict;
+managed; // implementation in class zbp_i_rap_travel_hsy unique
 
 define behavior for ZI_RAP_Travel_HSY alias Travel
 persistent table ZRAP_ATRAV_HSY
 lock master
-authorization master ( instance )
+//authorization master ( instance )
 etag master LocalLastChangedAt
 {
   create;
@@ -37,7 +36,7 @@ etag master LocalLastChangedAt
 define behavior for ZI_RAP_Booking_HSY alias Booking
 persistent table ZRAP_ABOOK_HSY
 lock dependent by _Travel
-authorization dependent by _Travel
+//authorization dependent by _Travel
 etag master LocalLastChangedAt
 {
   association _Travel;
