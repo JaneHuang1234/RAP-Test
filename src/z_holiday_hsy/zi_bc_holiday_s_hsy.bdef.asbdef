@@ -1,0 +1,84 @@
+managed;
+with draft;
+
+define behavior for ZI_BC_HOLIDAY_S_HSY alias Holiday_S
+implementation in class ZBP_I_BC_Holiday_S_HSY unique
+draft table ZBC_HOLID02D_HSY
+with unmanaged save
+lock master total etag LastChangedAtMax
+
+{
+  update;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) selectTransport parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _Holiday { create; with draft; }
+}
+
+define behavior for ZI_BC_HOLIDAY_HSY alias Holiday
+implementation in class ZBP_I_BC_Holiday_HSY unique
+persistent table ZHSY_FCAL_HOLI
+draft table ZBC_HOLID01D_HSY
+etag master LocalLastChangedAt
+lock dependent by _Holiday_S
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( readonly : update )
+   HolidayID;
+
+
+  update;
+  delete;
+
+  mapping for ZHSY_FCAL_HOLI
+  {
+    HolidayID = HOLIDAY_ID;
+    MonthOfHoliday = MONTH_OF_HOLIDAY;
+    DayOfHoliday = DAY_OF_HOLIDAY;
+    Configdeprecationcode = CONFIGDEPRECATIONCODE;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _Holiday_S { with draft; }
+  association _HolidayText { create; with draft; }
+}
+
+define behavior for ZI_BC_HOLIDAYTEXT_HSY alias HolidayText
+implementation in class ZBP_I_BC_HolidayText_HSY unique
+persistent table ZHSY_FCAL_HOLI_T
+draft table ZBC_HOLID00D_HSY
+etag master LocalLastChangedAt
+lock dependent by _Holiday_S
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( readonly : update )
+   Language,
+   HolidayID;
+
+
+  update;
+  delete;
+
+  mapping for ZHSY_FCAL_HOLI_T
+  {
+    Language = SPRAS;
+    HolidayID = HOLIDAY_ID;
+    FcalDescription = FCAL_DESCRIPTION;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _Holiday { with draft; }
+  association _Holiday_S { with draft; }
+}

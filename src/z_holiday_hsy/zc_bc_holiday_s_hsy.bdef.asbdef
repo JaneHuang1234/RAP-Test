@@ -1,0 +1,35 @@
+projection;
+use draft;
+
+define behavior for ZC_BC_HOLIDAY_S_HSY alias Holiday_S
+
+{
+  use update;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _Holiday { create; with draft; }
+}
+
+define behavior for ZC_BC_HOLIDAY_HSY alias Holiday
+
+{
+  use update;
+  use delete;
+
+  use association _Holiday_S { with draft; }
+  use association _HolidayText { create; with draft; }
+}
+
+define behavior for ZC_BC_HOLIDAYTEXT_HSY alias HolidayText
+
+{
+  use update;
+  use delete;
+
+  use association _Holiday_S { with draft; }
+}

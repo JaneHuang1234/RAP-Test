@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_hello_world_hsy IMPLEMENTATION.
+CLASS ZCL_HELLO_WORLD_HSY IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

@@ -1,0 +1,79 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Holiday', 
+    typeNamePlural: 'Holidays', 
+    title: {
+      type: #STANDARD, 
+      label: 'Holiday', 
+      value: 'HolidayID'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'HolidayID', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_BC_Holiday_HSY with
+{
+  @UI.facet: [ {
+    id: 'idHoliday', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Holiday', 
+    position: 10 
+  }, 
+  {
+    id: 'idLineitem', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'HolidayText', 
+    position: 20 , 
+    targetElement: '_HolidayText'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  HolidayID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  MonthOfHoliday;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  DayOfHoliday;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  Configdeprecationcode;
+  
+  @UI.hidden: true
+  LastChangedAt;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

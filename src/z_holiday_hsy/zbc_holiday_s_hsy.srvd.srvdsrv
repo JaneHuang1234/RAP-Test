@@ -1,0 +1,6 @@
+define service ZBC_HOLIDAY_S_HSY {
+  expose ZC_BC_HOLIDAY_S_HSY as Holiday_S;
+  expose ZC_BC_HOLIDAY_HSY as Holiday;
+  expose ZC_BC_HOLIDAYTEXT_HSY as HolidayText;
+  expose I_LANGUAGE as Language;
+}

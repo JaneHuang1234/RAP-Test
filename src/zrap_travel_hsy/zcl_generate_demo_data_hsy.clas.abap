@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_generate_demo_data_hsy IMPLEMENTATION.
+CLASS ZCL_GENERATE_DEMO_DATA_HSY IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

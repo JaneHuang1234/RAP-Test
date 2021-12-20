@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_rap_eml_hsy IMPLEMENTATION.
+CLASS ZCL_RAP_EML_HSY IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
